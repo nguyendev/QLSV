@@ -1,0 +1,60 @@
+@model QLSV.Models.HocPhan
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HocPhan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenmon)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tenmon)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Siso)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Siso)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phonghoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phonghoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tiethoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tiethoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Thu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Thu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaybd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ngaybd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngaykt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ngaykt)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Mahp">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

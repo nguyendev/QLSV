@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="~/images/dang-ky.png" alt="...">
+                <div class="caption text-center">
+                    <h3><a asp-area="" asp-controller="DangKy" asp-action="Index" class="btn btn-danger btn-lg" role="button">Đăng ký</a></h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="~/images/training-icon-9.jpg" alt="...">
+                <div class="caption text-center">
+                    <h3><a asp-area="" asp-controller="HocPhan" asp-action="Index" class="btn btn-primary btn-lg" role="button">Môn học</a></h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="~/images/sinh-vien.png" alt="...">
+                <div class="caption text-center">
+                    <h3><a asp-area="" asp-controller="SinhVien" asp-action="Index" class="btn btn-success btn-lg" role="button">Sinh viên</a></h3>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

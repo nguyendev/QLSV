@@ -1,0 +1,84 @@
+@model QLSV.Models.HocPhan
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>HocPhan</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Mahp" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Mahp" class="form-control" />
+                <span asp-validation-for="Mahp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tenmon" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Tenmon" class="form-control" />
+                <span asp-validation-for="Tenmon" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Siso" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Siso" class="form-control" />
+                <span asp-validation-for="Siso" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Phonghoc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Phonghoc" class="form-control" />
+                <span asp-validation-for="Phonghoc" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tiethoc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Tiethoc" class="form-control" />
+                <span asp-validation-for="Tiethoc" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Thu" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Thu" class="form-control" />
+                <span asp-validation-for="Thu" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ngaybd" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Ngaybd" class="form-control" />
+                <span asp-validation-for="Ngaybd" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ngaykt" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Ngaykt" class="form-control" />
+                <span asp-validation-for="Ngaykt" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

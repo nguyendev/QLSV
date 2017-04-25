@@ -1,0 +1,15 @@
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.deps.json
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.runtimeconfig.json
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.runtimeconfig.dev.json
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.dll
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.csprojResolveAssemblyReference.cache
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.AssemblyInfo.cs
+C:\Users\nguye\OneDrive\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.pdb
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.dll
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.pdb
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.DangKyResources.resources
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.HocPhanResources.resources
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.SinhVienResources.resources
+C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.csproj.GenerateResource.Cache

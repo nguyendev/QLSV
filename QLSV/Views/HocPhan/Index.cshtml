@@ -1,0 +1,98 @@
+﻿@model QLSV.Extension.PaginatedList<QLSV.Models.HocPhan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TenmonSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Tên môn</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SisoSortParm"]" >Sĩ số</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PhonghocSortParm"]">Phòng học</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TiethocSortParm"]">Tiết học</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ThuMonSortParm"]">Thứ</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NgaybdSortParm"]">Ngày bắt đầu</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NgayktSortParm"]">Ngày kết thúc</a>
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenmon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Siso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phonghoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tiethoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaybd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaykt)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Mahp">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Mahp">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Mahp">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled btn">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled btn">
+    Next
+</a>
