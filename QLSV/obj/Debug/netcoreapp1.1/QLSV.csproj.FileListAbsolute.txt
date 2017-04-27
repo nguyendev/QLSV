@@ -13,3 +13,16 @@ C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.DangKyR
 C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.HocPhanResources.resources
 C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.SinhVienResources.resources
 C:\Users\nguye\OneDrive\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.csproj.GenerateResource.Cache
+C:\Users\duy tung dao\Documents\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.deps.json
+C:\Users\duy tung dao\Documents\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.runtimeconfig.json
+C:\Users\duy tung dao\Documents\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.runtimeconfig.dev.json
+C:\Users\duy tung dao\Documents\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.dll
+C:\Users\duy tung dao\Documents\QLSV\QLSV\bin\Debug\netcoreapp1.1\QLSV.pdb
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.csprojResolveAssemblyReference.cache
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.DangKyResources.resources
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.HocPhanResources.resources
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.Resources.SinhVienResources.resources
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.csproj.GenerateResource.Cache
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.AssemblyInfo.cs
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.dll
+C:\Users\duy tung dao\Documents\QLSV\QLSV\obj\Debug\netcoreapp1.1\QLSV.pdb
