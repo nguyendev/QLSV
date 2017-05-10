@@ -1,4 +1,4 @@
-@model IEnumerable<QLSV.Models.SinhVien>
+@model QLSV.Extension.PaginatedList<QLSV.Models.SinhVien>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,35 +9,66 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Hoten)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["HoTenSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Hoten)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Namsinh)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NamsinhSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Namsinh)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Gioitinh)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GioiTinhSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Gioitinh)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sdt)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SdtSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Sdt)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["EmailSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Email)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Diachi)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DiachiSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Diachi)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nganh)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NganhSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Nganh)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Lop)
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["LopSortParm"]" 
+                    asp-route-currentFilter="@ViewData["CurrentFilter"]"> 
+                    @Html.DisplayNameFor(model => model.First().Lop)
+                    </a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Hinhanh)
                 </th>
             <th></th>
         </tr>
@@ -70,7 +101,8 @@
                 @Html.DisplayFor(modelItem => item.Lop)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hinhanh)
+                <img src=" @Html.DisplayFor(modelItem => item.Hinhanh) " alt="Hinh anh" style="width: 30px; height: auto;">
+                
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Mssv">Edit</a> |
@@ -81,3 +113,22 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled btn">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled btn">
+    Next
+</a>

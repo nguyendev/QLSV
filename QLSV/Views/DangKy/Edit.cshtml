@@ -8,11 +8,24 @@
 
 <form asp-action="Edit">
     <div class="form-horizontal">
-        <h4>DangKy</h4>
+        <h4>Dang Ky</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Mahp" />
-    <input type="hidden" asp-for="Mssv" />
+        <div class="form-group">
+            <label asp-for="Mahp" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Mahp" class="form-control" />
+                <span asp-validation-for="Mahp" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Mssv" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Mssv" class="form-control" />
+                <span asp-validation-for="Mssv" class="text-danger"></span>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

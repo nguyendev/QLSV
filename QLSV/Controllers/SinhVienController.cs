@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using QLSV.Extension;
 using QLSV.Models;
 
 namespace QLSV.Controllers
@@ -19,9 +20,67 @@ namespace QLSV.Controllers
         }
 
         // GET: SinhVien
-        public async Task<IActionResult> Index()
+        // GET: HocPhan
+        [Route("SinhVien")]
+        public async Task<IActionResult> Index(string sortOrder,
+    string currentFilter,
+    string searchString,
+    int? page)
         {
-            return View(await _context.SinhVien.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["HoTenSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ho_ten" : "";
+            ViewData["GioiTinhSortParm"] = String.IsNullOrEmpty(sortOrder) ? "gioi_tinh" : "";
+            ViewData["SdtSortParm"] = String.IsNullOrEmpty(sortOrder) ? "sdt" : "";
+            ViewData["EmailSortParm"] = String.IsNullOrEmpty(sortOrder) ? "email" : "";
+            ViewData["DiachiSortParm"] = String.IsNullOrEmpty(sortOrder) ? "dia_chi" : "";
+            ViewData["NganhSortParm"] = String.IsNullOrEmpty(sortOrder) ? "nganh" : "";
+            ViewData["LopSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lop" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+            var sinhviens = from s in _context.SinhVien
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                sinhviens = sinhviens.Where(s => s.Hoten.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "ho_ten":
+                    sinhviens = sinhviens.OrderByDescending(s => s.Hoten);
+                    break;
+                case "gioi_tinh":
+                    sinhviens = sinhviens.OrderBy(s => s.Gioitinh);
+                    break;
+                case "sdt":
+                    sinhviens = sinhviens.OrderByDescending(s => s.Sdt);
+                    break;
+                case "email":
+                    sinhviens = sinhviens.OrderByDescending(s => s.Email);
+                    break;
+                case "dia_chi":
+                    sinhviens = sinhviens.OrderByDescending(s => s.Diachi);
+                    break;
+                case "nganh":
+                    sinhviens = sinhviens.OrderByDescending(s => s.Nganh);
+                    break;
+                case "lop":
+                    sinhviens = sinhviens.OrderByDescending(s => s.Lop);
+                    break;
+                default:
+                    sinhviens = sinhviens.OrderBy(s => s.Hoten);
+                    break;
+            }
+
+            int pageSize = 10;
+            return View(await PaginatedList<SinhVien>.CreateAsync(sinhviens.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: SinhVien/Details/5
@@ -47,7 +106,6 @@ namespace QLSV.Controllers
         {
             return View();
         }
-
         // POST: SinhVien/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using QLSV.Extension;
 using QLSV.Models;
 
 namespace QLSV.Controllers
@@ -15,14 +16,50 @@ namespace QLSV.Controllers
 
         public DangKyController(QLSVContext context)
         {
-            _context = context;    
+            _context = context;
         }
 
         // GET: DangKy
-        public async Task<IActionResult> Index()
+        [Route("DangKy")]
+        public async Task<IActionResult> Index(string sortOrder,
+    string currentFilter,
+    string searchString,
+    int? page)
         {
-            var qLSVContext = _context.DangKy.Include(d => d.MahpNavigation).Include(d => d.MssvNavigation);
-            return View(await qLSVContext.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["MaHpParm"] = String.IsNullOrEmpty(sortOrder) ? "ma_hp" : "";
+            ViewData["MaSvParm"] = String.IsNullOrEmpty(sortOrder) ? "ma_sv" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+            var dangkys = from s in _context.DangKy
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                dangkys = dangkys.Where(s => s.Mahp.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "ma_hp":
+                    dangkys = dangkys.OrderByDescending(s => s.Mahp);
+                    break;
+                case "ma_sv":
+                    dangkys = dangkys.OrderBy(s => s.Mssv);
+                    break;
+                default:
+                    dangkys = dangkys.OrderBy(s => s.Mahp);
+                    break;
+            }
+
+            int pageSize = 10;
+            return View(await PaginatedList<DangKy>.CreateAsync(dangkys.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: DangKy/Details/5
