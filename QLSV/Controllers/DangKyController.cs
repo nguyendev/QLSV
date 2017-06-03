@@ -24,11 +24,16 @@ namespace QLSV.Controllers
         public async Task<IActionResult> Index(string sortOrder,
     string currentFilter,
     string searchString,
-    int? page)
+    int? page, int? pageSize, int? currentSize)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["MaHpParm"] = String.IsNullOrEmpty(sortOrder) ? "ma_hp" : "";
             ViewData["MaSvParm"] = String.IsNullOrEmpty(sortOrder) ? "ma_sv" : "";
+            if (pageSize != null)
+                currentSize = pageSize;
+            else
+                currentSize = 10;
+            ViewData["CurrentSize"] = currentSize;
             if (searchString != null)
             {
                 page = 1;
@@ -57,9 +62,7 @@ namespace QLSV.Controllers
                     dangkys = dangkys.OrderBy(s => s.Mahp);
                     break;
             }
-
-            int pageSize = 10;
-            return View(await PaginatedList<DangKy>.CreateAsync(dangkys.AsNoTracking(), page ?? 1, pageSize));
+            return View(await PaginatedList<DangKy>.CreateAsync(dangkys.AsNoTracking(), page ?? 1, currentSize ?? 10));
         }
 
         // GET: DangKy/Details/5
