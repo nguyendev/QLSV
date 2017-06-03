@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QLSV.Models
 {
-    public partial class SinhVien
+    public class SinhVien
     {
         public SinhVien()
         {
@@ -49,6 +49,6 @@ namespace QLSV.Models
         [Display(Name = "Hinhanh", ResourceType = typeof(SinhVienResources))]
         public string Hinhanh { get; set; }
 
-        public virtual ICollection<DangKy> DangKy { get; set; }
+        public ICollection<DangKy> DangKy { get; set; }
     }
 }
