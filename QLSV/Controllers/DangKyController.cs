@@ -24,16 +24,12 @@ namespace QLSV.Controllers
         public async Task<IActionResult> Index(string sortOrder,
     string currentFilter,
     string searchString,
-    int? page, int? pageSize, int? currentSize)
+    int? page, int? pageSize)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["MaHpParm"] = String.IsNullOrEmpty(sortOrder) ? "ma_hp" : "";
             ViewData["MaSvParm"] = String.IsNullOrEmpty(sortOrder) ? "ma_sv" : "";
-            if (pageSize != null)
-                currentSize = pageSize;
-            else
-                currentSize = 10;
-            ViewData["CurrentSize"] = currentSize;
+            ViewData["CurrentSize"] = pageSize;
             if (searchString != null)
             {
                 page = 1;
@@ -62,13 +58,13 @@ namespace QLSV.Controllers
                     dangkys = dangkys.OrderBy(s => s.Mahp);
                     break;
             }
-            return View(await PaginatedList<DangKy>.CreateAsync(dangkys.AsNoTracking(), page ?? 1, currentSize ?? 10));
+            return View(await PaginatedList<DangKy>.CreateAsync(dangkys.AsNoTracking(), page ?? 1, pageSize != null ? pageSize.Value : 10));
         }
 
         // GET: DangKy/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string Mahp, string Mssv)
         {
-            if (id == null)
+            if (Mahp == null || Mssv == null)
             {
                 return NotFound();
             }
@@ -76,7 +72,7 @@ namespace QLSV.Controllers
             var dangKy = await _context.DangKy
                 .Include(d => d.MahpNavigation)
                 .Include(d => d.MssvNavigation)
-                .SingleOrDefaultAsync(m => m.Mahp == id);
+                .SingleOrDefaultAsync(m => m.Mahp == Mahp && m.Mssv == Mssv);
             if (dangKy == null)
             {
                 return NotFound();
@@ -112,14 +108,14 @@ namespace QLSV.Controllers
         }
 
         // GET: DangKy/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(string Mahp, string Mssv)
         {
-            if (id == null)
+            if (Mahp == null || Mssv == null)
             {
                 return NotFound();
             }
 
-            var dangKy = await _context.DangKy.SingleOrDefaultAsync(m => m.Mahp == id);
+            var dangKy = await _context.DangKy.SingleOrDefaultAsync(m => m.Mahp == Mahp && m.Mssv == Mssv);
             if (dangKy == null)
             {
                 return NotFound();
@@ -134,13 +130,8 @@ namespace QLSV.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Mahp,Mssv")] DangKy dangKy)
+        public async Task<IActionResult> Edit(string Mahp, string Mssv, [Bind("Mahp,Mssv")] DangKy dangKy)
         {
-            if (id != dangKy.Mahp)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
@@ -150,7 +141,7 @@ namespace QLSV.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DangKyExists(dangKy.Mahp))
+                    if (!DangKyExists(dangKy.Mahp, dangKy.Mssv))
                     {
                         return NotFound();
                     }
@@ -167,9 +158,9 @@ namespace QLSV.Controllers
         }
 
         // GET: DangKy/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(string Mahp, string Mssv)
         {
-            if (id == null)
+            if (Mahp == null || Mssv == null)
             {
                 return NotFound();
             }
@@ -177,7 +168,7 @@ namespace QLSV.Controllers
             var dangKy = await _context.DangKy
                 .Include(d => d.MahpNavigation)
                 .Include(d => d.MssvNavigation)
-                .SingleOrDefaultAsync(m => m.Mahp == id);
+                .SingleOrDefaultAsync(m => m.Mahp == Mahp && m.Mssv == Mssv);
             if (dangKy == null)
             {
                 return NotFound();
@@ -189,17 +180,17 @@ namespace QLSV.Controllers
         // POST: DangKy/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(string Mahp, string Mssv)
         {
-            var dangKy = await _context.DangKy.SingleOrDefaultAsync(m => m.Mahp == id);
+            var dangKy = await _context.DangKy.SingleOrDefaultAsync(m => m.Mahp == Mahp && m.Mssv == Mssv);
             _context.DangKy.Remove(dangKy);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool DangKyExists(string id)
+        private bool DangKyExists(string Mahp, string Mssv)
         {
-            return _context.DangKy.Any(e => e.Mahp == id);
+            return _context.DangKy.Any(e => e.Mahp == Mahp && e.Mssv == Mssv);
         }
     }
 }

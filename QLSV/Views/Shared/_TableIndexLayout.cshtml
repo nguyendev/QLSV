@@ -1,5 +1,6 @@
-@{ 
+@{
     Layout = "_Layout";
+    RenderSection("scripts", required: false);
 }
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -23,38 +24,8 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="dataTables_length" id="example1_length">
-                                        <form asp-action="Index" method="get">
-                                            <label>
-                                                Hiển thị
-                                                <select name="PageSize" aria-controls="example1" class="form-control input-sm" value="@ViewData["currentSize"]" onchange="this.form.submit()">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select> phần tử
-
-                                            </label>
-                                         </form>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4 text-center">
-                                    <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div id="example1_filter" class="dataTables_filter">
-                                        <form asp-action="Index" method="get">
-                                            <label>@ViewData["Search"]:<input type="search" name="SearchString" value="@ViewData["currentFilter"]" class="form-control input-sm" placeholder="" aria-controls="example1"></label>
-                                            <input type="submit" value="Tìm kiếm" class="btn btn-danger" />
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                        
                             @RenderBody()
-                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
