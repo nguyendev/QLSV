@@ -21,11 +21,11 @@ namespace QLSV.Controllers
 
         // GET: SinhVien
         // GET: HocPhan
-        [Route("SinhVien")]
+        [Route("sinh-vien")]
         public async Task<IActionResult> Index(string sortOrder,
-    string currentFilter,
+   string currentFilter,
     string searchString,
-    int? page)
+    int? page, int? pageSize)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["HoTenSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ho_ten" : "";
@@ -35,6 +35,7 @@ namespace QLSV.Controllers
             ViewData["DiachiSortParm"] = String.IsNullOrEmpty(sortOrder) ? "dia_chi" : "";
             ViewData["NganhSortParm"] = String.IsNullOrEmpty(sortOrder) ? "nganh" : "";
             ViewData["LopSortParm"] = String.IsNullOrEmpty(sortOrder) ? "lop" : "";
+            ViewData["CurrentSize"] = pageSize;
             if (searchString != null)
             {
                 page = 1;
@@ -79,11 +80,11 @@ namespace QLSV.Controllers
                     break;
             }
 
-            int pageSize = 10;
-            return View(await PaginatedList<SinhVien>.CreateAsync(sinhviens.AsNoTracking(), page ?? 1, pageSize));
+            return View(await PaginatedList<SinhVien>.CreateAsync(sinhviens.AsNoTracking(), page ?? 1, pageSize != null ? pageSize.Value : 10));
         }
 
         // GET: SinhVien/Details/5
+        [Route("sinh-vien/chi-tiet/{id}")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -102,6 +103,7 @@ namespace QLSV.Controllers
         }
 
         // GET: SinhVien/Create
+        [Route("sinh-vien/tao")]
         public IActionResult Create()
         {
             return View();
@@ -110,6 +112,7 @@ namespace QLSV.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("sinh-vien/tao")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Mssv,Hoten,Namsinh,Gioitinh,Sdt,Email,Diachi,Nganh,Lop,Hinhanh")] SinhVien sinhVien)
         {
@@ -123,6 +126,7 @@ namespace QLSV.Controllers
         }
 
         // GET: SinhVien/Edit/5
+        [Route("sinh-vien/chinh-sua/{id}")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -142,6 +146,7 @@ namespace QLSV.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("sinh-vien/chinh-sua/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("Mssv,Hoten,Namsinh,Gioitinh,Sdt,Email,Diachi,Nganh,Lop,Hinhanh")] SinhVien sinhVien)
         {

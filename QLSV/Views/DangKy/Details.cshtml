@@ -14,13 +14,13 @@
 
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MahpNavigation)
+            @Html.DisplayNameFor(model => model.MahpNavigation.Mahp)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.MahpNavigation.Mahp)
         </dd> 
         <dt>
-            @Html.DisplayNameFor(model => model.MssvNavigation)
+            @Html.DisplayNameFor(model => model.MssvNavigation.Mssv)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.MssvNavigation.Mssv)
@@ -28,6 +28,5 @@
     </dl>
 </div>
 <div class="box-footer">
-    <a asp-action="Edit" asp-route-Mahp="@Model.Mahp" asp-route-Mssv="@Model.Mssv" class="btn btn-warning fa fa-edit"> Sửa</a>
     <a class="btn btn-default pull-right" asp-action="Index">Quay lai</a>
 </div>

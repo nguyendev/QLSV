@@ -1,22 +1,17 @@
 @model QLSV.Models.HocPhan
-
 @{
-    ViewData["Title"] = "Index";
-    ViewData["Heading"] = "Đăng ký";
+    ViewData["Title"] = "Chi tiết";
+    ViewData["Heading"] = "Học phần";
     ViewData["SmallHeading"] = "";
     ViewData["BreadcrumbOne"] = "QLSV";
-    ViewData["BreadcrumbTwo"] = "Đăng ký";
-    ViewData["BreadcrumbThree"] = "Danh sách đăng ký";
-    ViewData["BoxTitle"] = "Danh sách đăng ký";
+    ViewData["BreadcrumbTwo"] = "Học phần";
+    ViewData["BreadcrumbThree"] = "Chi tiết học phần";
+    ViewData["BoxTitle"] = "Chi tiết học phần";
     ViewData["Search"] = "Tìm học phần";
-    Layout = "_CreateLayout";
+    Layout = "_TableIndexLayout";
 }
+<div class="box-body">
 
-<h2>Details</h2>
-
-<div>
-    <h4>HocPhan</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Tenmon)
@@ -62,7 +57,6 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Mahp">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+<div class="box-footer">
+    <a class="btn btn-default pull-right" asp-action="Index">Quay lai</a>
 </div>

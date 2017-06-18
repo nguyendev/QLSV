@@ -1,6 +1,6 @@
 @{
     Layout = "_Layout";
-    RenderSection("scripts", required: false);
+    
 }
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,3 +34,18 @@
         </div>
     </section>
 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+
+
+            //Date picker
+            $('.datepicker').datepicker({
+                autoclose: true
+            });
+
+        });
+    </script>
+}

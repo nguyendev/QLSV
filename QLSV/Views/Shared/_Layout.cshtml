@@ -41,6 +41,7 @@
     <![endif]-->
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link href="~/AdminLTE/plugins/datepicker/datepicker3.css" rel="stylesheet" />
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -71,6 +72,7 @@
          immediately after the control sidebar -->
         <div class="control-sidebar-bg"></div>
     </div>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>  
             <environment names="Development">
                 <script src="~/lib/jquery/dist/jquery.js"></script>
                 <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -92,6 +94,7 @@
             <!-- DataTables -->
             <script src="~/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
             <script src="~/AdminLTE/plugins/datatables/dataTables.bootstrap.min.js"></script>
+            <script src="~/AdminLTE/plugins/datepicker/bootstrap-datepicker.js"></script>
             <!-- SlimScroll -->
             <script src="~/AdminLTE/plugins/slimScroll/jquery.slimscroll.js"></script>
             <!-- FastClick -->
@@ -101,7 +104,7 @@
             <!-- AdminLTE for demo purposes -->
             <script src="~/AdminLTE/dist/js/demo.js"></script>
             <!-- page script -->
-            @RenderSection("Scripts", required: false)
+        @RenderSection("Scripts",required: false)
 </body>
 </html>
 

@@ -2,97 +2,203 @@
 
 @{
     ViewData["Title"] = "Index";
+    ViewData["Heading"] = "Học phần";
+    ViewData["SmallHeading"] = "";
+    ViewData["BreadcrumbOne"] = "QLSV";
+    ViewData["BreadcrumbTwo"] = "Học phần";
+    ViewData["BreadcrumbThree"] = "Danh sách học phần";
+    ViewData["BoxTitle"] = "Danh sách học phần";
+    ViewData["Search"] = "Tìm học phần";
+    Layout = "_TableIndexLayout";
 }
 
-<h2>Index</h2>
+<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
-        <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-default" /> |
-        </p>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="dataTables_length" id="example1_length">
+                <form asp-action="Index" method="get">
+                    <label>
+                        Hiển thị
+                        <select name="PageSize" aria-controls="example1" class="form-control input-sm" value="50" onchange="this.form.submit()">
+                            <option disabled>Xin chọn</option>
+                            <option value="5" class="select-value">5</option>
+                            <option value="50"> 50</option>
+                            <option value="100">100</option>
+                        </select> phần tử
+                    </label>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-4 text-center">
+            <a asp-action="Create" class="btn btn-primary">Tạo mới</a>
+        </div>
+        <div class="col-sm-4">
+            <div id="example1_filter" class="dataTables_filter">
+                <form asp-action="Index" method="get">
+                    <label>@ViewData["Search"]:<input type="search" name="SearchString" value="@ViewData["currentFilter"]" class="form-control input-sm" placeholder="" aria-controls="example1"></label>
+                    <input type="submit" value="Tìm kiếm" class="btn btn-danger" />
+                </form>
+            </div>
+        </div>
     </div>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TenmonSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Tên môn</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["SisoSortParm"]" >Sĩ số</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PhonghocSortParm"]">Phòng học</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TiethocSortParm"]">Tiết học</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ThuMonSortParm"]">Thứ</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NgaybdSortParm"]">Ngày bắt đầu</a>
-                </th>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NgayktSortParm"]">Ngày kết thúc</a>
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tenmon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Siso)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phonghoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tiethoc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ngaybd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ngaykt)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Mahp">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Mahp">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Mahp">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
 
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-page="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @prevDisabled btn">
-    Previous
-</a>
-<a asp-action="Index"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-page="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-default @nextDisabled btn">
-    Next
-</a>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["TenmonSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Tên môn</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["SisoSortParm"]">Sĩ số</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["PhonghocSortParm"]">Phòng học</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["TiethocSortParm"]">Tiết học</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["ThuMonSortParm"]">Thứ</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NgaybdSortParm"]">Ngày bắt đầu</a>
+                        </th>
+                        <th>
+                            <a asp-action="Index" asp-route-sortOrder="@ViewData["NgayktSortParm"]">Ngày kết thúc</a>
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tenmon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Siso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phonghoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tiethoc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Thu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ngaybd)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ngaykt)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Mahp" class="btn btn-warning fa fa-edit"></a>
+                            <a asp-action="Details" asp-route-id="@item.Mahp" class="btn btn-success fa fa-newspaper-o"></a> 
+                            <a asp-action="Delete" asp-route-id="@item.Mahp" class="btn btn-danger fa fa-remove"></a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+                @*Hiển thị 1 to 10 trong 57 entries*@
+
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                <ul class="pagination">
+                    @{
+                        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                    }
+
+
+
+                    <li class="paginate_button previous disabled" id="example1_previous">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-page="@(Model.PageIndex - 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default @prevDisabled btn">
+                            Trước
+                        </a>
+                    </li>
+                    <li class="paginate_button">
+                        @if (Model.PageIndex - 2 > 0)
+                        {
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-page="@(Model.PageIndex -2)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled btn">
+                                @(Model.PageIndex - 2)
+                            </a>
+                        }
+                    </li>
+                    <li class="paginate_button ">
+                        @if (Model.PageIndex - 1 > 0)
+                        {
+                            <a asp-action="Index"
+                               asp-route-sortOrder="@ViewData["CurrentSort"]"
+                               asp-route-page="@(Model.PageIndex -1)"
+                               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                               class="btn btn-default @nextDisabled btn">
+                                @(Model.PageIndex - 1)
+                            </a>
+                        }
+                    </li>
+                    <li class="paginate_button active">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-page="@(Model.PageIndex)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default @nextDisabled btn">
+                            @(Model.PageIndex)
+                        </a>
+                    </li>
+                    <li class="paginate_button ">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-page="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default @nextDisabled btn">
+                            @(Model.PageIndex + 1)
+                        </a>
+                    </li>
+                    <li class="paginate_button ">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-page="@(Model.PageIndex + 2)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default @nextDisabled btn">
+                            @(Model.PageIndex + 2)
+                        </a>
+                    </li>
+                    <li class="paginate_button next" id="example1_next">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-page="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-default @nextDisabled btn">
+                            Kế
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

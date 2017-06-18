@@ -1,92 +1,80 @@
 @model QLSV.Models.SinhVien
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Chỉnh sửa";
+    ViewData["Heading"] = "Sinh vien";
+    ViewData["SmallHeading"] = "";
+    ViewData["BreadcrumbOne"] = "QLSV";
+    ViewData["BreadcrumbTwo"] = "Sinh viên";
+    ViewData["BreadcrumbThree"] = "Chỉnh sửa thông tin";
+    ViewData["BoxTitle"] = "Chỉnh sửa thông tin";
+    ViewData["Search"] = "Tìm học phần";
+    Layout = "_EditLayout";
 }
-
-<h2>Edit</h2>
-
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>SinhVien</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Mssv" />
-        <div class="form-group">
-            <label asp-for="Hoten" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Hoten" class="form-control" />
-                <span asp-validation-for="Hoten" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Namsinh" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Namsinh" class="form-control" />
-                <span asp-validation-for="Namsinh" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Gioitinh" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Gioitinh" class="form-control" />
-                <span asp-validation-for="Gioitinh" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Sdt" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Sdt" class="form-control" />
-                <span asp-validation-for="Sdt" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Email" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Diachi" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Diachi" class="form-control" />
-                <span asp-validation-for="Diachi" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Nganh" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Nganh" class="form-control" />
-                <span asp-validation-for="Nganh" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Lop" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Lop" class="form-control" />
-                <span asp-validation-for="Lop" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Hinhanh" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Hinhanh" class="form-control" />
-                <span asp-validation-for="Hinhanh" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <label asp-for="Hoten" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Hoten" class="form-control" />
+            <span asp-validation-for="Hoten" class="text-danger"></span>
         </div>
     </div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="form-group">
+        <label asp-for="Namsinh" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Namsinh" class="form-control" />
+            <span asp-validation-for="Namsinh" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gioitinh" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Gioitinh" class="form-control" />
+            <span asp-validation-for="Gioitinh" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Sdt" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Sdt" class="form-control" />
+            <span asp-validation-for="Sdt" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Diachi" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Diachi" class="form-control" />
+            <span asp-validation-for="Diachi" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nganh" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Nganh" class="form-control" />
+            <span asp-validation-for="Nganh" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Lop" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Lop" class="form-control" />
+            <span asp-validation-for="Lop" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Hinhanh" class="col-md-2 control-label"></label>
+        <div class="col-md-9">
+            <input asp-for="Hinhanh" class="form-control" />
+            <span asp-validation-for="Hinhanh" class="text-danger"></span>
+        </div>
+    </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

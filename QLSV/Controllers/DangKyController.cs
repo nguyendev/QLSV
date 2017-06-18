@@ -20,7 +20,7 @@ namespace QLSV.Controllers
         }
 
         // GET: DangKy
-        [Route("DangKy")]
+        [Route("dang-ky")]
         public async Task<IActionResult> Index(string sortOrder,
     string currentFilter,
     string searchString,
@@ -62,6 +62,7 @@ namespace QLSV.Controllers
         }
 
         // GET: DangKy/Details/5
+        [Route("dang-ky/chi-tiet/{mahp}-{mssv}")]
         public async Task<IActionResult> Details(string Mahp, string Mssv)
         {
             if (Mahp == null || Mssv == null)
@@ -82,6 +83,7 @@ namespace QLSV.Controllers
         }
 
         // GET: DangKy/Create
+        [Route("dang-ky/tao-moi")]
         public IActionResult Create()
         {
             ViewData["Mahp"] = new SelectList(_context.HocPhan, "Mahp", "Mahp");
@@ -94,6 +96,7 @@ namespace QLSV.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("dang-ky/tao-moi")]
         public async Task<IActionResult> Create([Bind("Mahp,Mssv")] DangKy dangKy)
         {
             if (ModelState.IsValid)
@@ -108,6 +111,7 @@ namespace QLSV.Controllers
         }
 
         // GET: DangKy/Edit/5
+        [Route("dang-ky/chinh-sua/{Mahp}-{Mssv}")]
         public async Task<IActionResult> Edit(string Mahp, string Mssv)
         {
             if (Mahp == null || Mssv == null)
@@ -128,6 +132,7 @@ namespace QLSV.Controllers
         // POST: DangKy/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("dang-ky/chinh-sua/{Mahp}-{Mssv}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string Mahp, string Mssv, [Bind("Mahp,Mssv")] DangKy dangKy)

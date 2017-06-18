@@ -22,9 +22,9 @@ namespace QLSV.Controllers
         // GET: HocPhan
         [Route("hoc-phan")]
         public async Task<IActionResult> Index(string sortOrder,
-    string currentFilter,
+ string currentFilter,
     string searchString,
-    int? page)
+    int? page, int? pageSize)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["TenmonSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ten_mon" : "";
@@ -34,6 +34,7 @@ namespace QLSV.Controllers
             ViewData["ThuMonSortParm"] = String.IsNullOrEmpty(sortOrder) ? "thu_mon" : "";
             ViewData["NgaybdSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ngay_bd" : "";
             ViewData["NgayktSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ngay_kt" : "";
+            ViewData["CurrentSize"] = pageSize;
             if (searchString != null)
             {
                 page = 1;
@@ -78,8 +79,7 @@ namespace QLSV.Controllers
                     break;
             }
 
-            int pageSize = 10;
-            return View(await PaginatedList<HocPhan>.CreateAsync(hocphans.AsNoTracking(), page ?? 1, pageSize));
+            return View(await PaginatedList<HocPhan>.CreateAsync(hocphans.AsNoTracking(), page ?? 1, pageSize != null ? pageSize.Value : 10));
         }
         // GET: HocPhan/Details/5
         [Route("hoc-phan/chi-tiet/{id}")]
