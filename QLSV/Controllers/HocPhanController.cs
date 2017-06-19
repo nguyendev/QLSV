@@ -26,6 +26,14 @@ namespace QLSV.Controllers
     string searchString,
     int? page, int? pageSize)
         {
+            List<NumberItem> SoLuong = new List<NumberItem>
+            {
+                new NumberItem { Value = 10},
+                new NumberItem { Value = 20},
+                new NumberItem { Value = 50},
+                new NumberItem { Value = 100},
+            };
+            ViewData["SoLuong"] = SoLuong;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["TenmonSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ten_mon" : "";
             ViewData["SisoSortParm"] = String.IsNullOrEmpty(sortOrder) ? "si_so" : "";

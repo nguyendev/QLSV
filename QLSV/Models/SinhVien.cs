@@ -50,5 +50,6 @@ namespace QLSV.Models
         public string Hinhanh { get; set; }
 
         public ICollection<DangKy> DangKy { get; set; }
+        
     }
 }

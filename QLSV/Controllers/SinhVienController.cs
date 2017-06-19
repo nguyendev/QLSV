@@ -27,6 +27,14 @@ namespace QLSV.Controllers
     string searchString,
     int? page, int? pageSize)
         {
+            List<NumberItem> SoLuong = new List<NumberItem>
+            {
+                new NumberItem { Value = 10},
+                new NumberItem { Value = 20},
+                new NumberItem { Value = 50},
+                new NumberItem { Value = 100},
+            };
+            ViewData["SoLuong"] = SoLuong;
             ViewData["CurrentSort"] = sortOrder;
             ViewData["HoTenSortParm"] = String.IsNullOrEmpty(sortOrder) ? "ho_ten" : "";
             ViewData["GioiTinhSortParm"] = String.IsNullOrEmpty(sortOrder) ? "gioi_tinh" : "";
@@ -79,7 +87,7 @@ namespace QLSV.Controllers
                     sinhviens = sinhviens.OrderBy(s => s.Hoten);
                     break;
             }
-
+            
             return View(await PaginatedList<SinhVien>.CreateAsync(sinhviens.AsNoTracking(), page ?? 1, pageSize != null ? pageSize.Value : 10));
         }
 
@@ -106,6 +114,13 @@ namespace QLSV.Controllers
         [Route("sinh-vien/tao")]
         public IActionResult Create()
         {
+            List<GioiTinh> GT = new List<GioiTinh>()
+            {
+                new GioiTinh { Id="N",FullName="Nam" },
+                 new GioiTinh { Id="",FullName="Nu" },
+            };
+
+            ViewBag.GioiTinh = GT;
             return View();
         }
         // POST: SinhVien/Create

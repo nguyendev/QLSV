@@ -20,12 +20,14 @@
                 <form asp-action="Index" method="get">
                     <label>
                         Hiển thị
-                        <select name="PageSize" aria-controls="example1" class="form-control input-sm" value="50" onchange="this.form.submit()">
+                        <select asp-for="PageSize" asp-items="@(new SelectList(@ViewBag.SoLuong,"Value","Value"))" onchange="this.form.submit()" class="form-control input-sm"></select>
+                        @*<select name="PageSize" aria-controls="example1" class="form-control input-sm" value="50" onchange="this.form.submit()">
                             <option disabled>Xin chọn</option>
-                            <option value="5" class="select-value">5</option>
+                            <option value="10"> 10</option>
+                            <option value="20"> 20</option>
                             <option value="50"> 50</option>
                             <option value="100">100</option>
-                        </select> phần tử
+                        </select> phần tử*@
                     </label>
                 </form>
             </div>
@@ -113,7 +115,15 @@
                             @Html.DisplayFor(modelItem => item.Namsinh)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Gioitinh)
+                            @if (item.Gioitinh.ToString() == "N")
+                            {
+                                @Html.DisplayName("Nam");
+                            }
+                            else
+                            {
+                                @Html.DisplayName("Nữ");
+                            }
+
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Sdt)
@@ -131,7 +141,7 @@
                             @Html.DisplayFor(modelItem => item.Lop)
                         </td>
                         <td>
-                            <img src=" @Html.DisplayFor(modelItem => item.Hinhanh) " alt="Hinh anh" style="width: 30px; height: auto;">
+                            <img src=" @Html.DisplayFor(modelItem => item.Hinhanh) " alt="Hinh anh" style="width: 30px; height: auto;" onError="this.onerror=null;this.src='images/training-icon-9.jpg';">
 
                         </td>
                         <td>
@@ -148,8 +158,11 @@
     <div class="row">
         <div class="col-sm-5">
             <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
-                @*Hiển thị 1 to 10 trong 57 entries*@
-
+                @{
+                    int Min = (@Model.PageIndex - 1) * @Model.PageSize;
+                    int Max = (@Model.PageIndex) * @Model.PageSize;
+                }
+                Hiển thị @Min to @Max trong @Model.Count phần tử
             </div>
         </div>
         <div class="col-sm-7">
@@ -167,6 +180,7 @@
                            asp-route-sortOrder="@ViewData["CurrentSort"]"
                            asp-route-page="@(Model.PageIndex - 1)"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                            asp-route-pageSize="@ViewData["CurrentSize"]"
                            class="btn btn-default @prevDisabled btn">
                             Trước
                         </a>
@@ -178,6 +192,7 @@
                                asp-route-sortOrder="@ViewData["CurrentSort"]"
                                asp-route-page="@(Model.PageIndex -2)"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                asp-route-pageSize="@ViewData["CurrentSize"]"
                                class="btn btn-default @nextDisabled btn">
                                 @(Model.PageIndex - 2)
                             </a>
@@ -190,6 +205,7 @@
                                asp-route-sortOrder="@ViewData["CurrentSort"]"
                                asp-route-page="@(Model.PageIndex -1)"
                                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                                asp-route-pageSize="@ViewData["CurrentSize"]"
                                class="btn btn-default @nextDisabled btn">
                                 @(Model.PageIndex - 1)
                             </a>
@@ -200,6 +216,7 @@
                            asp-route-sortOrder="@ViewData["CurrentSort"]"
                            asp-route-page="@(Model.PageIndex)"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                            asp-route-pageSize="@ViewData["CurrentSize"]"
                            class="btn btn-default @nextDisabled btn">
                             @(Model.PageIndex)
                         </a>
@@ -209,6 +226,7 @@
                            asp-route-sortOrder="@ViewData["CurrentSort"]"
                            asp-route-page="@(Model.PageIndex + 1)"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                            asp-route-pageSize="@ViewData["CurrentSize"]"
                            class="btn btn-default @nextDisabled btn">
                             @(Model.PageIndex + 1)
                         </a>
@@ -218,6 +236,7 @@
                            asp-route-sortOrder="@ViewData["CurrentSort"]"
                            asp-route-page="@(Model.PageIndex + 2)"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                            asp-route-pageSize="@ViewData["CurrentSize"]"
                            class="btn btn-default @nextDisabled btn">
                             @(Model.PageIndex + 2)
                         </a>
@@ -227,6 +246,7 @@
                            asp-route-sortOrder="@ViewData["CurrentSort"]"
                            asp-route-page="@(Model.PageIndex + 1)"
                            asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                            asp-route-pageSize="@ViewData["CurrentSize"]"
                            class="btn btn-default @nextDisabled btn">
                             Kế
                         </a>

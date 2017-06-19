@@ -12,7 +12,7 @@ namespace QLSV.Extension
         public int TotalPages { get; private set; }
 
         public int PageSize { get;  set; }
-
+        public int Count { get; set; }
         public T t { get; set; }
 
         public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
@@ -20,6 +20,7 @@ namespace QLSV.Extension
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
             this.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            this.Count = count;
             this.AddRange(items);
         }
 
